@@ -45,6 +45,18 @@ export class BreakingBadService {
       return this.http.get(`${this.baseUrl}/${name}`)
   }
 
+  // OTHER METHODS
+
+  // @TODO
+  findBBCharacter(search) {
+      return this.http.get(`${this.baseUrl}/characters/${search}`).pipe(
+          map(character => {
+              character['charIndex'] = character['id'];
+              return character;
+          })
+      )
+  }
+
 
   // GETTERS
   // With breakingbadapi endpoints 
@@ -71,17 +83,6 @@ export class BreakingBadService {
   }
   getDeath(name) {
       return this.http.get(`https://breakingbadapi.com/api/deaths/${name}`)
-  }*/
-
-  // OTHER METHODS
-
-  // Code below for findQuote from 23/4 class recording
-  /*findQuote(search) {
-      return this.http.get(`https://breakingbadapi.com/api/quote?author=${search}`).pipe(
-          map( quote => {
-              return quote;
-          })
-      )
   }*/
 
 }
