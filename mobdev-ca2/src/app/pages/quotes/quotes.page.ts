@@ -4,7 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ApiService } from '../../services/api.service';
+import { BreakingBadService } from '../../services/breakingbad.service';
 
 @Component({
   selector: 'app-quotes',
@@ -13,7 +13,7 @@ import { ApiService } from '../../services/api.service';
 })
 export class QuotesPage implements OnInit {
     quotes: Observable<any>;
-    constructor(private router: Router, private api: ApiService) { }
+    constructor(private router: Router, private api: BreakingBadService) { }
     ngOnInit() {
         this.quotes = this.api.getQuotes();
         this.quotes.subscribe(data => {

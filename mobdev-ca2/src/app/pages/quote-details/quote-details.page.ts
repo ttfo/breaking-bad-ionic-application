@@ -1,7 +1,7 @@
 // main logic for 'character details'
 // Code from 23/4 class
 
-import { ApiService } from './../../services/api.service';
+import { BreakingBadService } from './../../services/breakingbad.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class QuoteDetailsPage implements OnInit {
   quote: any;
   quoteId = null;
-  constructor(private activatedRoute: ActivatedRoute, private api: ApiService) {}
+  constructor(private activatedRoute: ActivatedRoute, private api: BreakingBadService) {}
   ngOnInit() {
     this.quoteId = this.activatedRoute.snapshot.paramMap.get('id');
     this.api.getQuote(this.quoteId).subscribe(res => {

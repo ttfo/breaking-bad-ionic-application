@@ -1,7 +1,7 @@
 // main logic for 'episodes details'
 // Code from 14/4 class
 
-import { ApiService } from './../../services/api.service';
+import { BreakingBadService } from './../../services/breakingbad.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 @Component({
@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EpisodeDetailsPage implements OnInit {
   episode: any;
   episodeId = null;
-  constructor(private activatedRoute: ActivatedRoute, private api: ApiService) {}
+  constructor(private activatedRoute: ActivatedRoute, private api: BreakingBadService) {}
   ngOnInit() {
     this.episodeId = this.activatedRoute.snapshot.paramMap.get('id');
     this.api.getEpisode(this.episodeId).subscribe(res => {
