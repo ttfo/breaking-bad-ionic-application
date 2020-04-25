@@ -16,7 +16,7 @@ export class EpisodesPage implements OnInit {
     ngOnInit() {
         this.episodes = this.api.getEpisodes();
         this.episodes.subscribe(data => {
-            console.log('my data: ', data);
+            console.log('my data: ', data); // line added for debugging
         });
     }
     openDetails(episode) {
