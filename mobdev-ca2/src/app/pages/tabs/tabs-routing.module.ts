@@ -61,7 +61,7 @@ const routes: Routes = [
     },
     {
         path: '',
-        redirectTo: '/tabs/episodes',
+        redirectTo: '/tabs/episodes', // setting redirection from root folder
         pathMatch: 'full'
     }
 ];
