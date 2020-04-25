@@ -1,3 +1,6 @@
+// main logic for 'tabs'
+// Code from 14/4 class
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
