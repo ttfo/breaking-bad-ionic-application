@@ -18,15 +18,20 @@
 </ion-header>
 <ion-content padding>
   <ion-card *ngIf="episode" class="movie-card">
-    <ion-card-header>Episode {{ episode.season }}: {{ episode.episode }}</ion-card-header>
+    <ion-card-header>Episode # {{ episode.episode }} of Breaking Bad Season # {{ episode.season }}</ion-card-header>
     <ion-card-content>
-      {{ episode.season }}
     </ion-card-content>
-    <ion-item class="movie-info" lines="none">
-      <ion-icon name="episode" slot="start"></ion-icon>
-      Director: {{ episode.season }}
+    <ion-item class="movie-info" lines="none" style="padding:16px">
+      <ion-icon name="clipboard-outline" slot="start"></ion-icon>
+      Breaking Bad Season # {{ episode.season }}<br/>      
+      Episode # {{ episode.episode }}<br/>
+      Title: {{ episode.title }}
     </ion-item>
-    <ion-item class="movie-info" lines="none">
+    <ion-item class="movie-info" lines="none" style="padding:16px">
+      <ion-icon name="body-outline" slot="start"></ion-icon>
+      Characters: {{ episode.characters }}
+    </ion-item>    
+    <ion-item class="movie-info" lines="none" style="padding:16px">
       <ion-icon name="calendar" slot="start"></ion-icon>
       Release Date: {{ episode.air_date }}
     </ion-item>

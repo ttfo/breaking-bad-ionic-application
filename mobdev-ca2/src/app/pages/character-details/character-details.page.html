@@ -5,26 +5,27 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{ character?.name }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="unfavoriteepisode()" *ngIf="isFavorite">
-        <ion-icon name="star" slot="icon-only" color="secondary"></ion-icon>
-      </ion-button>
-      <ion-button (click)="favoriteepisode()" *ngIf="!isFavorite">
-        <ion-icon name="star-outline" slot="icon-only" color="secondary"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
   <ion-card *ngIf="character" class="movie-card">
-    <ion-card-header>Name {{ character.name }}</ion-card-header>
+    <ion-card-header><b>Breaking Bad Seasons:</b> {{ character.appearance == "" ? "Not seen yet" : character.appearance }} || <b>Better Call Saul Seasons:</b> {{ character.better_call_saul_appearance == "" ? "Not seen yet" : character.better_call_saul_appearance }}</ion-card-header>
     <ion-card-content>
-      <!--{{ episode.season }}-->
-      @TODO Some random text
+      <!--{{ episode.season }}
+      <img ng-src="{{ character.img }}" style="height:200px; padding: 5px 5px 5px 5px;"/>-->
     </ion-card-content>
-    <ion-item class="movie-info" lines="none">
-      <ion-icon name="character" slot="start"></ion-icon>
-      Birthday: {{ character.birthday }}
+    <ion-item class="movie-info" lines="none" style="padding:16px">
+      <ion-icon name="body-outline"  slot="start"></ion-icon>
+      {{ character.name }} was {{ character.birthday == "Unknown" ? "" : "born on "+character.birthday+" and" }} also known as {{ character.nickname }}, between other aliases.<br/>
+      {{ character.name }}'s occupations and hobbies included "{{ character.occupation }}".
+    </ion-item>
+    <ion-item class="movie-info" lines="none" style="padding:16px">
+      <ion-icon name="fitness-outline" slot="start"></ion-icon>
+      {{ character.name }} {{ character.status == "Alive" ? " is still alive, or -at least- we haven't received reports of a disappearance yet" : " is dead or missing, but most likely dead" }}.
+    </ion-item>
+    <ion-item class="movie-info" lines="none" style="padding:16px">
+      <ion-icon name="planet-outline" slot="start"></ion-icon>
+      {{ character.name }} is also known in a parallel universe as {{ character.portrayed }}.
     </ion-item>
   </ion-card>
 </ion-content>

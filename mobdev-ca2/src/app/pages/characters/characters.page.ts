@@ -1,5 +1,5 @@
 // main logic for 'characters'
-// Code from 23/4 class
+// Starter code from 23/4 class
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,9 +9,9 @@ import { IonInfiniteScroll } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-characters',
-  templateUrl: './characters.page.html',
-  styleUrls: ['./characters.page.scss'],
+    selector: 'app-characters',
+    templateUrl: './characters.page.html',
+    styleUrls: ['./characters.page.scss'],
 })
 export class CharactersPage implements OnInit {
 
@@ -19,8 +19,8 @@ export class CharactersPage implements OnInit {
 
     characters: Observable<any>;
     offset = 0;
-    @ViewChild(IonInfiniteScroll,{static:false}) infinite: IonInfiniteScroll; // REF https://stackoverflow.com/questions/56473899/error-ts2554-expected-2-arguments-but-got-1-with-viewchild
-    
+    @ViewChild(IonInfiniteScroll, { static: false }) infinite: IonInfiniteScroll; // REF https://stackoverflow.com/questions/56473899/error-ts2554-expected-2-arguments-but-got-1-with-viewchild
+
     ngOnInit() {
         this.loadBBCharacters();
     }
@@ -54,7 +54,7 @@ export class CharactersPage implements OnInit {
     onSearchChange(e) {
         let characterNameQuery = e.detail.value;
         //let characterNameQuery = value.name;
-        
+
         if (characterNameQuery == '') {
             this.offset = 0;
             this.loadBBCharacters();
@@ -77,7 +77,7 @@ export class CharactersPage implements OnInit {
             this.loadBBCharacters();
             return;
         });
-        
+
     }
 
 }
