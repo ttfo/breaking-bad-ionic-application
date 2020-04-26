@@ -7,4 +7,10 @@
 
     <ion-searchbar placeholder="Search For Killers" (ionChange)="onSearchChange($event)"></ion-searchbar>
 
+	<ion-list>
+		<ion-item lines="inset">
+			Killings to date: {{ deathCount.deathCount }}
+		</ion-item>
+	</ion-list>
+
 </ion-content>

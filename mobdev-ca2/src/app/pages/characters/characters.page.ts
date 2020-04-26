@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BreakingBadService } from '../../services/breakingbad.service';
 import { IonInfiniteScroll } from '@ionic/angular';
-import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-characters',

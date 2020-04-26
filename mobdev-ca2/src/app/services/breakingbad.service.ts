@@ -49,10 +49,13 @@ export class BreakingBadService {
     getQuote(id) {
         return this.http.get(`${this.baseUrl}/quotes/${id}`)
     }
+    getQuoteByAuthor(charName){
+        return this.http.get(`${this.baseUrl}/quote?author=${charName}`)
+    }    
     //   getDeaths() {
     //       return this.http.get(`../assets/deaths.json`)
     //   }
-    getDeaths(killer) {
+    getDeathCount(killer) {
         return this.http.get(`${this.baseUrl}/death-count?name=${killer}`)
     }
 
@@ -71,6 +74,11 @@ export class BreakingBadService {
     findBBCharacter(charNameQuery) {
         console.log('search: ', charNameQuery);
         return this.getCharacterByName(charNameQuery);
+    }
+
+    findBBQuote(charNameQuery) {
+        console.log('search: ', charNameQuery);
+        return this.getQuoteByAuthor(charNameQuery);
     }
 
     // GETTERS

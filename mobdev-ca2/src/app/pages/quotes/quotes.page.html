@@ -5,6 +5,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+
+	<ion-searchbar placeholder="Search Quotes by Author" (ionChange)="onSearchChange($event)"></ion-searchbar>
+
     <ion-list>
         <ion-item button detail lines="inset" *ngFor="let quote of quotes | async" (click)="openDetails(quote)">
         {{ quote.quote }}
