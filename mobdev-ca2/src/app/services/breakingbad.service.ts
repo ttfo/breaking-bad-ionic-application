@@ -4,6 +4,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -28,35 +29,51 @@ export class BreakingBadService {
   }
   getCharacters(offset = 0) {
       return this.http.get(`../assets/characters.json?offset=${offset}&limit=25`)
+      //return this.http.get<Characters[]>(`../assets/characters.json?offset=${offset}&limit=25`)
   }
   getCharacter(id) {
-      return this.http.get(`${this.baseUrl}/characters/${id}`)
-  }    
+      let character = this.http.get(`${this.baseUrl}/characters/${id}`);
+      return character;
+  }
+//   getCharacterByName(charName) {
+//       let allTimeCastJSON = this.http.get(`../assets/characters.json`);
+//       let result = allTimeCastJSON
+//       .map((response: Response) => response.json())
+//       .map(({firstName, lastName}) => (({ name }) => name);
+//   }    
   getQuotes() {
       return this.http.get(`../assets/quotes.json`)
   }
   getQuote(id) {
       return this.http.get(`${this.baseUrl}/quotes/${id}`)
   }  
-  getDeaths() {
-      return this.http.get(`../assets/deaths.json`)
-  }
-  getDeath(name) {
-      return this.http.get(`${this.baseUrl}/${name}`)
+//   getDeaths() {
+//       return this.http.get(`../assets/deaths.json`)
+//   }
+  getDeaths(killer) {
+      return this.http.get(`${this.baseUrl}/death-count?name=${killer}`)
   }
 
   // OTHER METHODS
 
   // @TODO
-  findBBCharacter(search) {
-      return this.http.get(`${this.baseUrl}/characters/${search}`).pipe(
-          map(character => {
-              character['charIndex'] = character['id'];
-              return character;
-          })
-      )
-  }
+//   findBBCharacter(search) {
+//       return this.http.get(`${this.baseUrl}/characters/${search}`).pipe(
+//           map(character => {
+//               character['charIndex'] = character['id'];
+//               return character;
+//           })
+//       )
+//   }
 
+    findBBCharacter(charNameQuery) {
+        console.log('search: ', charNameQuery);
+        if (charNameQuery == "Walter White") {
+            const char = this.getCharacter(1);
+            //let charName = char.name;
+            return char;
+        }
+    }  
 
   // GETTERS
   // With breakingbadapi endpoints 

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BreakingBadService } from '../../services/breakingbad.service';
 import { IonInfiniteScroll } from '@ionic/angular';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-characters',
@@ -13,11 +14,12 @@ import { IonInfiniteScroll } from '@ionic/angular';
   styleUrls: ['./characters.page.scss'],
 })
 export class CharactersPage implements OnInit {
-    
-    characters: Observable<any>;
-    offset = 0;
 
     constructor(private router: Router, private api: BreakingBadService) { }
+
+    characters: Observable<any>;
+    offset = 0;
+    @ViewChild(IonInfiniteScroll,{static:false}) infinite: IonInfiniteScroll; // REF https://stackoverflow.com/questions/56473899/error-ts2554-expected-2-arguments-but-got-1-with-viewchild
     
     ngOnInit() {
         this.loadBBCharacters();
@@ -37,6 +39,10 @@ export class CharactersPage implements OnInit {
                 event.target.complete();
             }
 
+            if (this.offset == 125) {
+                this.infinite.disabled = true;
+            }
+
         });
     }
 
@@ -46,19 +52,30 @@ export class CharactersPage implements OnInit {
     }
 
     onSearchChange(e) {
-        let value = e.detail.value;
+        let characterNameQuery = e.detail.value;
+        //let characterNameQuery = value.name;
         
-        if (value == '') {
+        if (characterNameQuery == '') {
             this.offset = 0;
             this.loadBBCharacters();
             return;
         }
 
         // @TODO
-        this.api.findBBCharacter(value).subscribe(res => {
-            this.characters = this.api.getCharacters();
+        this.api.findBBCharacter(characterNameQuery).subscribe(res => {
+            console.log('res: ', res);
+            let myCharacter = res[0];
+            //res = res.toString;
+            console.log('myCharacter: ', myCharacter);
+            let charName = myCharacter[name];
+            console.log('charName: ', charName);
+            //const selectName = res.name();
+
+            return res;
+            //this.characters = res[10];
         }, err => {
-            this.characters = null;
+            this.loadBBCharacters();
+            return;
         });
         
     }

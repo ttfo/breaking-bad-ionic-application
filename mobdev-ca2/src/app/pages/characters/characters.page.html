@@ -1,4 +1,4 @@
-<!--Code from 23/4 class-->
+<!--Main code from 23/4 class-->
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Characters</ion-title>
@@ -15,7 +15,7 @@
     </ion-list>
 
     <!--Infinite scroll markup - REF https://www.youtube.com/watch?v=Nc1RqvDY-B8&feature=youtu.be-->
-    <ion-infinite-scroll (ionInfinite)="loadBBCharacters(true, $event)">
+    <ion-infinite-scroll (ionInfinite)="loadBBCharacters(true, $event)" #selectScroll>
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more Breaking Bad characters ...">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>
