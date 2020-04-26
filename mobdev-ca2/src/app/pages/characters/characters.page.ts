@@ -62,17 +62,21 @@ export class CharactersPage implements OnInit {
         }
 
         // @TODO
-        this.api.findBBCharacter(characterNameQuery).subscribe(res => {
-            console.log('res: ', res);
-            let myCharacter = res[0];
-            //res = res.toString;
-            console.log('myCharacter: ', myCharacter);
-            let charName = myCharacter[name];
-            console.log('charName: ', charName);
-            //const selectName = res.name();
-
-            return res;
-            //this.characters = res[10];
+        // this.api.findBBCharacter(characterNameQuery).subscribe(res => {
+        //     console.log('res: ', res);
+        //     let myCharacter = res[0];
+        //     //res = res.toString;
+        //     console.log('myCharacter: ', myCharacter);
+        //     let charName = myCharacter.name;
+        //     console.log('charName: ', charName);
+        //     //const selectName = res.name();
+        //     //return charName;
+        //     //this.characters = res[10];
+        //     this.characters = res[];
+        //     console.log('this.characters: ', this.characters);
+        // }
+        this.characters.subscribe(data => {
+            this.characters = this.api.findBBCharacter(characterNameQuery);
         }, err => {
             this.loadBBCharacters();
             return;
