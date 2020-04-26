@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BreakingBadService } from '../../services/breakingbad.service';
@@ -9,10 +9,44 @@ import { BreakingBadService } from '../../services/breakingbad.service';
     styleUrls: ['./deaths.page.scss'],
 })
 export class DeathsPage implements OnInit {
-
+    deaths: Observable<any>;
     constructor(private router: Router, private api: BreakingBadService) { }
 
-    killers: Observable<any>;
+
+    ngOnInit() {
+        this.loadBBDeaths();
+    }
+
+    loadBBDeaths() {
+        this.deaths = this.api.getDeaths();
+        this.deaths.subscribe(data => {
+            console.log('my data: ', data); // line added for debugging
+        });
+    }
+
+    openDetails(death) {
+        let deathId = death.death_id;
+        this.router.navigateByUrl(`/tabs/deaths/${deathId}`);
+    }
+
+    onSearchChange(e) {
+        let killerNameQuery = e.detail.value;
+
+        if (killerNameQuery == '') {
+            this.loadBBDeaths();
+            return;
+        }
+
+        this.deaths.subscribe(data => {
+            this.deaths = this.api.findBBQuote(killerNameQuery);
+        }, err => {
+            this.loadBBDeaths();
+            return;
+        });
+
+    }    
+
+    /**killers: Observable<any>;
     deathCount: any;
     
     ngOnInit() {
@@ -43,6 +77,6 @@ export class DeathsPage implements OnInit {
             return;
         });
 
-    }
+    }**/
 
 }

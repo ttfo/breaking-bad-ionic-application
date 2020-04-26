@@ -1,0 +1,26 @@
+<!--general page markup from 23/4 class-->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" defaultHref="/tabs/deaths">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ death?.death }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-card *ngIf="death" class="movie-card">
+    <ion-card-header>Breaking Bad Season: {{ death.season }}</ion-card-header>
+    <ion-card-content>
+    </ion-card-content>
+    <ion-item class="movie-info" lines="none" style="padding:16px">
+      <ion-icon name="mic-outline" slot="start"></ion-icon>
+      Last words (<i>if the killed had the time to say any</i>): {{ death.last_words }}     
+    </ion-item>
+    <ion-item class="movie-info" lines="none" style="padding:16px">
+      <ion-icon name="clipboard-outline" slot="start"></ion-icon>
+      Method of killing: {{ death.cause }}<br/>    
+      Killer: {{ death.responsible }}
+    </ion-item>   
+  </ion-card>
+</ion-content>
+

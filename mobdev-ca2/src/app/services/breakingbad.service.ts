@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+
 @Injectable({
     providedIn: 'root'
 })
@@ -51,10 +52,28 @@ export class BreakingBadService {
     }
     getQuoteByAuthor(charName){
         return this.http.get(`${this.baseUrl}/quote?author=${charName}`)
-    }    
-    //   getDeaths() {
-    //       return this.http.get(`../assets/deaths.json`)
-    //   }
+    }
+
+    getDeaths() {
+        return this.http.get(`../assets/deaths.json`)
+    }
+
+    getDeath(id) {
+        // Need to build my own method as getDeath(id) is not available via API call
+        // Example from https://stackoverflow.com/questions/49632512/search-object-by-id-inside-json-file-using-angular-2: 
+        //  getCountry(id) {
+        //     return this.countries.find(c => c.id === id);
+        //  }
+        // return JSON.parse(`../assets/deaths.json`).find(c => c.id === id);
+        // @TODO - also check https://indepth.dev/reading-the-rxjs-6-sources-map-and-pipe/
+        return this.getDeaths().pipe(
+            map(response => {
+              // doSomething 
+            })
+        );
+
+    }
+
     getDeathCount(killer) {
         return this.http.get(`${this.baseUrl}/death-count?name=${killer}`)
     }
@@ -80,6 +99,11 @@ export class BreakingBadService {
         console.log('search: ', charNameQuery);
         return this.getQuoteByAuthor(charNameQuery);
     }
+
+    findBBKills(charNameQuery) {
+        console.log('search: ', charNameQuery);
+        return this.getDeathCount(charNameQuery);
+    }    
 
     // GETTERS
     // With breakingbadapi endpoints 

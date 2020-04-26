@@ -5,12 +5,12 @@
 </ion-header>
 <ion-content>
 
-    <ion-searchbar placeholder="Search For Killers" (ionChange)="onSearchChange($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Search For Killings" (ionChange)="onSearchChange($event)"></ion-searchbar>
 
-	<ion-list>
-		<ion-item lines="inset">
-			Killings to date: {{ deathCount.deathCount }}
-		</ion-item>
-	</ion-list>
+    <ion-list>
+        <ion-item button detail lines="inset" *ngFor="let death of deaths | async" (click)="openDetails(death)">
+        {{ death.death }}
+        </ion-item>
+    </ion-list>
 
 </ion-content>

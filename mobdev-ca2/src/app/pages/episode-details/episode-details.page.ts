@@ -20,9 +20,16 @@ export class EpisodeDetailsPage implements OnInit {
         })
     }
 
+    isFavorite: boolean;
     
-    favoriteepisode() {}
+    favoriteepisode() {
+        console.log("click");
+        this.isFavorite = true;
+    }
 
-    unfavoriteepisode() {}
+    unfavoriteepisode() {
+        console.log("un-click");
+        this.isFavorite = false;       
+    }
     
 }
