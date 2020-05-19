@@ -60,7 +60,16 @@ const routes: Routes = [
                         loadChildren: () => import('../death-details/death-details.module').then(m => m.DeathDetailsPageModule)
                     }                    
                 ]                
-            }
+            },
+            {
+                path: 'camera',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: () => import('../camera/camera.module').then(m => m.CameraPageModule)
+                    }                 
+                ]                
+            }            
         ]
     },
     {
