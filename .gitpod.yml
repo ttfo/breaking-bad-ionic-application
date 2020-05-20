@@ -1,4 +1,5 @@
 tasks:
   - name: Installing Ionic 5 & Cordova
     command: npm i -g @ionic/cli cordova
+  - name: Installing Heroku
     command: npm i -g heroku
