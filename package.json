@@ -4,8 +4,8 @@
   "engines": {
     "node": "12.16.x"
   },  
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Mattia Bergamini",
+  "homepage": "https://www.cct.ie/",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
@@ -61,5 +61,5 @@
   },
   "devDependencies": {
   },
-  "description": "An Ionic project"
+  "description": "A Breaking Bad app"
 }
